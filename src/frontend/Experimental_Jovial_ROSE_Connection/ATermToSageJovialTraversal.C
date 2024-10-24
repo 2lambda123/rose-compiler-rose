@@ -487,8 +487,14 @@ ATbool ATermToSageJovialTraversal::traverse_IntegerMachineParameter(ATerm term, 
      expr = SageBuilder::buildVarRefExp("LOCSINWORD", scope);
    }
 
-   // MAXFLOATPRECISION, MAXFIXEDPRECISION, MAXINT, MAXINTSIZE, MAXSTOP
+   // MAXBYTES, MAXFLOATPRECISION, MAXFIXEDPRECISION, MAXINT, MAXINTSIZE, MAXSTOP
    //
+   else if (ATmatch(term, "MAXBITS")) {
+     expr = buildIntrinsicVarRefExp_nfi(std::string{"MAXBITS"}, scope);
+   }
+   else if (ATmatch(term, "MAXBYTES")) {
+     expr = buildIntrinsicVarRefExp_nfi(std::string{"MAXBYTES"}, scope);
+   }
    else if (ATmatch(term, "MAXFLOATPRECISION")) {
      expr = SageBuilder::buildVarRefExp("MAXFLOATPRECISION", scope);
    }
@@ -554,8 +560,6 @@ ATbool ATermToSageJovialTraversal::traverse_IntegerMachineParameter(ATerm term, 
 
    //TODO:
    //      'IMPLINTSIZE'    '(' IntegerSize    ')'   -> IntegerMachineParameter {cons("IMPLINTSIZE")}
-   //      'MAXBYTES'                                -> IntegerMachineParameter {cons("MAXBYTES")}
-   //      'MAXBITS'                                 -> IntegerMachineParameter {cons("MAXBITS")}
    //      'MAXSIGNDIGITS'                           -> IntegerMachineParameter {cons("MAXSIGNDIGITS")}
    //      'MAXTABLESIZE'                            -> IntegerMachineParameter {cons("MAXTABLESIZE")}
    //      'MINFRACTION'    '(' CompileTimeNumericFormula ')'    -> IntegerMachineParameter {cons("MINFRACTION")}
